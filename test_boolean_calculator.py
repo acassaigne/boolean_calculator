@@ -8,7 +8,8 @@ def boolean_calculator(input_boolean):
         return False
     if input_boolean == "FALSE":
         return False
-    return True
+    if input_boolean == "TRUE":
+        return True
 
 class InvalidBooleanExpression(Exception):
     pass
