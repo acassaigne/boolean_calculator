@@ -33,5 +33,5 @@ class TestBooleanCalculatorShould(unittest.TestCase):
         with self.assertRaises(InvalidBooleanExpression):
             boolean_calculator("")
 
-    def test_x(self):
+    def test_return_True_for_not_false(self):
         self.assertEqual(True, boolean_calculator("NOT FALSE"))
