@@ -3,6 +3,8 @@ import unittest
 
 def boolean_calculator(input_boolean):
 
+    if input_boolean == "NOT":
+        raise InvalidBooleanExpression
     if input_boolean == "NOT" + " " + "FALSE":
         result = boolean_calculator(input_boolean[4:])
         return not result
@@ -37,3 +39,7 @@ class TestBooleanCalculatorShould(unittest.TestCase):
 
     def test_return_True_for_not_false(self):
         self.assertEqual(True, boolean_calculator("NOT FALSE"))
+
+    def test_x(self):
+        with self.assertRaises(InvalidBooleanExpression):
+            boolean_calculator("NOT")
