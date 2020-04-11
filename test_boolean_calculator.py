@@ -2,8 +2,10 @@ import unittest
 
 
 def boolean_calculator(input_boolean):
+
     if input_boolean == "NOT" + " " + "FALSE":
-        return not False
+        result = boolean_calculator(input_boolean[4:])
+        return not result
     if input_boolean == "NOT" + " " + "TRUE":
         return not True
     if input_boolean == "FALSE":
