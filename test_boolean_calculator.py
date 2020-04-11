@@ -3,13 +3,9 @@ import unittest
 
 def boolean_calculator(input_boolean):
 
-    if input_boolean == "NOT":
-        raise InvalidBooleanExpression
-    if input_boolean == "NOT" + " " + "FALSE":
+    if input_boolean[0:3] == "NOT":
         result = boolean_calculator(input_boolean[4:])
         return not result
-    if input_boolean == "NOT" + " " + "TRUE":
-        return not True
     if input_boolean == "FALSE":
         return False
     if input_boolean == "TRUE":
