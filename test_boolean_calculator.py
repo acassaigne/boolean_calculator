@@ -2,14 +2,15 @@ import unittest
 
 
 def boolean_calculator(input_boolean):
-    if input_boolean == "":
-        raise InvalidBooleanExpression
     if input_boolean == "NOT" + " " + "TRUE":
         return False
     if input_boolean == "FALSE":
         return False
     if input_boolean == "TRUE":
         return True
+    if input_boolean == "":
+        raise InvalidBooleanExpression
+
 
 class InvalidBooleanExpression(Exception):
     pass
