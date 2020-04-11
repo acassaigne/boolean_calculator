@@ -40,6 +40,6 @@ class TestBooleanCalculatorShould(unittest.TestCase):
     def test_return_True_for_not_false(self):
         self.assertEqual(True, boolean_calculator("NOT FALSE"))
 
-    def test_x(self):
+    def test_raise_error_for_not_only_expression(self):
         with self.assertRaises(InvalidBooleanExpression):
             boolean_calculator("NOT")
