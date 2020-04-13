@@ -47,11 +47,11 @@ def boolean_calculator(input_boolean):
         index_separator = rest_input.find(" ")
         and_word = rest_input[:index_separator]
         var2 = rest_input[index_separator+1:]
-        if input_boolean == "FALSE" + " " + "AND" + " " + "TRUE":
+        if input_boolean == var1 + " " + "AND" + " " + var2:
             return boolean_calculator(var1) and boolean_calculator(var2)
-        if input_boolean == "TRUE" + " " + "AND" + " " + "TRUE":
+        if input_boolean == var1 + " " + "AND" + " " + var2:
             return boolean_calculator(var1) and boolean_calculator(var2)
-        if input_boolean == "TRUE" + " " + "AND" + " " + "FALSE":
+        if input_boolean == var1 + " " + "AND" + " " + var2:
             return boolean_calculator(var1) and boolean_calculator(var2)
     if input_boolean[0:3] == "NOT":
         return not boolean_calculator(input_boolean[4:])
