@@ -29,24 +29,24 @@ class TestBooleanCalculatorShould(unittest.TestCase):
         with self.assertRaises(InvalidBooleanExpression):
             boolean_calculator("NOT")
 
-    def test_x(self):
+    def test_return_true_for_true_and_true(self):
         self.assertEqual(True, boolean_calculator("TRUE AND TRUE"))
 
-    def test_y(self):
+    def test_return_false_for_true_and_false(self):
             self.assertEqual(False, boolean_calculator("TRUE AND FALSE"))
 
-    def test_z(self):
+    def test_return_false_for_false_and_true(self):
         self.assertEqual(False, boolean_calculator("FALSE AND TRUE"))
 
-    def test_e(self):
+    def test_raise_error_for_and_only_operator_without_operand(self):
         with self.assertRaises(InvalidBooleanExpression):
             boolean_calculator("AND")
 
-    def test_ee(self):
+    def test_raise_error_for_and_operator_with_only_one_operand(self):
         with self.assertRaises(InvalidBooleanExpression):
             boolean_calculator("TRUE AND")
 
-    def test_zz(self):
+    def test_return_false_for_true_and_true_and_false(self):
         self.assertEqual(False, boolean_calculator("TRUE AND TRUE AND FALSE"))
 
 
