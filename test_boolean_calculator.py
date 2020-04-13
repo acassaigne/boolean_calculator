@@ -49,6 +49,8 @@ class TestBooleanCalculatorShould(unittest.TestCase):
     def test_return_false_for_true_and_true_and_false(self):
         self.assertEqual(False, boolean_calculator("TRUE AND TRUE AND FALSE"))
 
+    def test_x(self):
+        self.assertEqual(True, boolean_calculator("TRUE OR TRUE"))
 
 def has_separator(string):
     return string.find(" ") != -1
@@ -78,5 +80,6 @@ def boolean_calculator(boolean_expression):
         operator, rest_expression = extract_first_word_from(rest_expression)
         if operator == "AND":
             return boolean_calculator(var1) and boolean_calculator(rest_expression)
+        raise InvalidBooleanExpression
 
 
