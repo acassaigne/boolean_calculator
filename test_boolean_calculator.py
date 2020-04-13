@@ -67,10 +67,7 @@ def boolean_calculator(input_boolean):
             return False
         if word == "TRUE":
             return True
-        if word == "AND":
-            raise InvalidBooleanExpression
-        if word == "":
-            raise InvalidBooleanExpression
+        raise InvalidBooleanExpression
 
     if word == "NOT":
         return not boolean_calculator(rest_expression)
