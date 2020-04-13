@@ -78,9 +78,6 @@ def boolean_calculator(input_boolean):
         var1 = word
         operator, rest_expression = extract_first_word_from(rest_expression)
         if operator == "AND":
-            var2, rest_expression = extract_first_word_from(rest_expression)
-            if var2 == "":
-                raise InvalidBooleanExpression
-            return boolean_calculator(var1) and boolean_calculator(var2)
+            return boolean_calculator(var1) and boolean_calculator(rest_expression)
 
 
