@@ -40,33 +40,34 @@ class TestBooleanCalculatorShould(unittest.TestCase):
 
 
 def boolean_calculator(input_boolean):
-    if input_boolean == "FALSE" + " " + "AND" + " " + "TRUE":
-        index_separator = input_boolean.find(" ")
-        var1 = boolean_calculator(input_boolean[:index_separator])
-        rest_input = input_boolean[index_separator+1:]
-        index_separator = rest_input.find(" ")
-        and_word = rest_input[:index_separator]
-        rest_input = rest_input[index_separator+1:]
-        var2 = boolean_calculator(rest_input)
-        return var1 and var2
-    if input_boolean == "TRUE" + " " + "AND" + " " + "TRUE":
-        index_separator = input_boolean.find(" ")
-        var1 = boolean_calculator(input_boolean[:index_separator])
-        rest_input = input_boolean[index_separator+1:]
-        index_separator = rest_input.find(" ")
-        and_word = rest_input[:index_separator]
-        rest_input = rest_input[index_separator+1:]
-        var2 = boolean_calculator(rest_input)
-        return var1 and var2
-    if input_boolean == "TRUE" + " " + "AND" + " " + "FALSE":
-        index_separator = input_boolean.find(" ")
-        var1 = boolean_calculator(input_boolean[:index_separator])
-        rest_input = input_boolean[index_separator+1:]
-        index_separator = rest_input.find(" ")
-        and_word = rest_input[:index_separator]
-        rest_input = rest_input[index_separator+1:]
-        var2 = boolean_calculator(rest_input)
-        return var1 and var2
+    if input_boolean.find(" ") != -1:
+        if input_boolean == "FALSE" + " " + "AND" + " " + "TRUE":
+            index_separator = input_boolean.find(" ")
+            var1 = boolean_calculator(input_boolean[:index_separator])
+            rest_input = input_boolean[index_separator+1:]
+            index_separator = rest_input.find(" ")
+            and_word = rest_input[:index_separator]
+            rest_input = rest_input[index_separator+1:]
+            var2 = boolean_calculator(rest_input)
+            return var1 and var2
+        if input_boolean == "TRUE" + " " + "AND" + " " + "TRUE":
+            index_separator = input_boolean.find(" ")
+            var1 = boolean_calculator(input_boolean[:index_separator])
+            rest_input = input_boolean[index_separator+1:]
+            index_separator = rest_input.find(" ")
+            and_word = rest_input[:index_separator]
+            rest_input = rest_input[index_separator+1:]
+            var2 = boolean_calculator(rest_input)
+            return var1 and var2
+        if input_boolean == "TRUE" + " " + "AND" + " " + "FALSE":
+            index_separator = input_boolean.find(" ")
+            var1 = boolean_calculator(input_boolean[:index_separator])
+            rest_input = input_boolean[index_separator+1:]
+            index_separator = rest_input.find(" ")
+            and_word = rest_input[:index_separator]
+            rest_input = rest_input[index_separator+1:]
+            var2 = boolean_calculator(rest_input)
+            return var1 and var2
     if input_boolean[0:3] == "NOT":
         return not boolean_calculator(input_boolean[4:])
     if input_boolean == "FALSE":
