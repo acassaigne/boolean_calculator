@@ -58,6 +58,9 @@ def extract_first_word_from(string):
     return (string, "")
 
 def boolean_calculator(input_boolean):
+    word, rest_expression = extract_first_word_from(input_boolean)
+    if word == "NOT":
+        return not boolean_calculator(rest_expression)
     if has_separator(input_boolean):
         var1, rest_expression = extract_first_word_from(input_boolean)
         operator, rest_expression = extract_first_word_from(rest_expression)
@@ -66,14 +69,12 @@ def boolean_calculator(input_boolean):
             if var2 == "":
                 raise InvalidBooleanExpression
             return boolean_calculator(var1) and boolean_calculator(var2)
-    if input_boolean[0:3] == "NOT":
-        return not boolean_calculator(input_boolean[4:])
-    if input_boolean == "FALSE":
+    if word == "FALSE":
         return False
-    if input_boolean == "TRUE":
+    if word == "TRUE":
         return True
-    if input_boolean == "AND":
+    if word == "AND":
         raise InvalidBooleanExpression
-    if input_boolean == "":
+    if word == "":
         raise InvalidBooleanExpression
 
