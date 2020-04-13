@@ -53,15 +53,17 @@ class TestBooleanCalculatorShould(unittest.TestCase):
 def has_separator(string):
     return string.find(" ") != -1
 
+
 def extract_first_word_from(string):
     if has_separator(string):
         index_separator = string.find(" ")
         first_word = string[:index_separator]
-        return (first_word, string[index_separator+1:])
-    return (string, "")
+        return first_word, string[index_separator + 1:]
+    return string, ""
 
-def boolean_calculator(input_boolean):
-    word, rest_expression = extract_first_word_from(input_boolean)
+
+def boolean_calculator(boolean_expression):
+    word, rest_expression = extract_first_word_from(boolean_expression)
     if rest_expression == "":
         if word == "FALSE":
             return False
@@ -71,7 +73,7 @@ def boolean_calculator(input_boolean):
 
     if word == "NOT":
         return not boolean_calculator(rest_expression)
-    if has_separator(input_boolean):
+    if has_separator(boolean_expression):
         var1 = word
         operator, rest_expression = extract_first_word_from(rest_expression)
         if operator == "AND":
