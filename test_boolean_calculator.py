@@ -80,6 +80,8 @@ def boolean_calculator(boolean_expression):
         operator, rest_expression = extract_first_word_from(rest_expression)
         if operator == "AND":
             return boolean_calculator(var1) and boolean_calculator(rest_expression)
+        if operator == "OR":
+            return boolean_calculator(var1) or boolean_calculator(rest_expression)
         raise InvalidBooleanExpression
 
 
