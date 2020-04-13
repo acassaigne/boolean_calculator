@@ -62,9 +62,10 @@ def boolean_calculator(input_boolean):
     if has_separator(input_boolean):
         var1, rest_expression = extract_first_word_from(input_boolean)
         and_word, rest_expression = extract_first_word_from(rest_expression)
-        var2, rest_expression = extract_first_word_from(rest_expression)
-        if input_boolean == var1 + " " + and_word + " " + var2:
-            return boolean_calculator(var1) and boolean_calculator(var2)
+        if and_word == "AND":
+            var2, rest_expression = extract_first_word_from(rest_expression)
+            if input_boolean == var1 + " " + and_word + " " + var2:
+                return boolean_calculator(var1) and boolean_calculator(var2)
     if input_boolean[0:3] == "NOT":
         return not boolean_calculator(input_boolean[4:])
     if input_boolean == "FALSE":
