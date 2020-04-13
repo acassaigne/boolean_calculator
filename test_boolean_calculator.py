@@ -48,17 +48,11 @@ def boolean_calculator(input_boolean):
         and_word = rest_input[:index_separator]
         var2 = rest_input[index_separator+1:]
         if input_boolean == "FALSE" + " " + "AND" + " " + "TRUE":
-            bool_result1 = boolean_calculator(var1)
-            bool_result2 = boolean_calculator(var2)
-            return bool_result1 and bool_result2
+            return boolean_calculator(var1) and boolean_calculator(var2)
         if input_boolean == "TRUE" + " " + "AND" + " " + "TRUE":
-            bool_result1 = boolean_calculator(var1)
-            bool_result2 = boolean_calculator(var2)
-            return bool_result1 and bool_result2
+            return boolean_calculator(var1) and boolean_calculator(var2)
         if input_boolean == "TRUE" + " " + "AND" + " " + "FALSE":
-            bool_result1 = boolean_calculator(var1)
-            bool_result2 = boolean_calculator(var2)
-            return bool_result1 and bool_result2
+            return boolean_calculator(var1) and boolean_calculator(var2)
     if input_boolean[0:3] == "NOT":
         return not boolean_calculator(input_boolean[4:])
     if input_boolean == "FALSE":
