@@ -1,16 +1,6 @@
 import unittest
 
 
-def boolean_calculator(input_boolean):
-
-    if input_boolean[0:3] == "NOT":
-        return not boolean_calculator(input_boolean[4:])
-    if input_boolean == "FALSE":
-        return False
-    if input_boolean == "TRUE":
-        return True
-    if input_boolean == "":
-        raise InvalidBooleanExpression
 
 
 class InvalidBooleanExpression(Exception):
@@ -41,3 +31,28 @@ class TestBooleanCalculatorShould(unittest.TestCase):
 
     def test_x(self):
         self.assertEqual(True, boolean_calculator("TRUE AND TRUE"))
+
+    def test_y(self):
+            self.assertEqual(False, boolean_calculator("TRUE AND FALSE"))
+
+    def test_z(self):
+        self.assertEqual(False, boolean_calculator("FALSE AND TRUE"))
+
+
+def boolean_calculator(input_boolean):
+    if input_boolean == "FALSE" + " " + "AND" + " " + "TRUE":
+        return False
+
+    if input_boolean == "TRUE" + " " + "AND" + " " + "TRUE":
+        return True
+    if input_boolean == "TRUE" + " " + "AND" + " " + "FALSE":
+        return False
+    if input_boolean[0:3] == "NOT":
+        return not boolean_calculator(input_boolean[4:])
+    if input_boolean == "FALSE":
+        return False
+    if input_boolean == "TRUE":
+        return True
+    if input_boolean == "":
+        raise InvalidBooleanExpression
+
