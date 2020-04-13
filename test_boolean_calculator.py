@@ -46,6 +46,9 @@ class TestBooleanCalculatorShould(unittest.TestCase):
         with self.assertRaises(InvalidBooleanExpression):
             boolean_calculator("TRUE AND")
 
+    def test_zz(self):
+        self.assertEqual(False, boolean_calculator("TRUE AND TRUE AND FALSE"))
+
 
 def has_separator(string):
     return string.find(" ") != -1
