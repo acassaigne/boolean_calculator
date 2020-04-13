@@ -41,12 +41,12 @@ class TestBooleanCalculatorShould(unittest.TestCase):
 
 def boolean_calculator(input_boolean):
     if input_boolean == "FALSE" + " " + "AND" + " " + "TRUE":
-        return False
+        return False and True
 
     if input_boolean == "TRUE" + " " + "AND" + " " + "TRUE":
-        return True
+        return True and True
     if input_boolean == "TRUE" + " " + "AND" + " " + "FALSE":
-        return False
+        return False and False
     if input_boolean[0:3] == "NOT":
         return not boolean_calculator(input_boolean[4:])
     if input_boolean == "FALSE":
