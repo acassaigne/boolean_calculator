@@ -41,8 +41,12 @@ class TestBooleanCalculatorShould(unittest.TestCase):
 
 def boolean_calculator(input_boolean):
     if input_boolean == "FALSE" + " " + "AND" + " " + "TRUE":
-        return False and True
-
+        index_separator = input_boolean.find(" ")
+        var1 = boolean_calculator(input_boolean[:index_separator])
+        index_separator2 = input_boolean[index_separator+1:].find(" ")
+        and_word = input_boolean[index_separator:index_separator2]
+        var2 = boolean_calculator(input_boolean[index_separator2:])
+        return var1 and var2
     if input_boolean == "TRUE" + " " + "AND" + " " + "TRUE":
         return True and True
     if input_boolean == "TRUE" + " " + "AND" + " " + "FALSE":
