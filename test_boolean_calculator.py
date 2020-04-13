@@ -38,15 +38,31 @@ class TestBooleanCalculatorShould(unittest.TestCase):
     def test_z(self):
         self.assertEqual(False, boolean_calculator("FALSE AND TRUE"))
 
+    def test_e(self):
+        with self.assertRaises(InvalidBooleanExpression):
+            boolean_calculator("AND")
+
+    @unittest.skip("a")
+    def test_ee(self):
+        with self.assertRaises(InvalidBooleanExpression):
+            boolean_calculator("TRUE AND")
+
+
+def has_separator(string):
+    return string.find(" ") != -1
+
+def extract_first_word_from(string):
+    if has_separator(string):
+        index_separator = string.find(" ")
+        first_word = string[:index_separator]
+        return (first_word, string[index_separator+1:])
+    return (string, "")
 
 def boolean_calculator(input_boolean):
-    if input_boolean.find(" ") != -1:
-        index_separator = input_boolean.find(" ")
-        var1 = input_boolean[:index_separator]
-        rest_input = input_boolean[index_separator+1:]
-        index_separator = rest_input.find(" ")
-        and_word = rest_input[:index_separator]
-        var2 = rest_input[index_separator+1:]
+    if has_separator(input_boolean):
+        var1, rest_expression = extract_first_word_from(input_boolean)
+        and_word, rest_expression = extract_first_word_from(rest_expression)
+        var2, rest_expression = extract_first_word_from(rest_expression)
         if input_boolean == var1 + " " + and_word + " " + var2:
             return boolean_calculator(var1) and boolean_calculator(var2)
     if input_boolean[0:3] == "NOT":
@@ -55,6 +71,8 @@ def boolean_calculator(input_boolean):
         return False
     if input_boolean == "TRUE":
         return True
+    if input_boolean == "AND":
+        raise InvalidBooleanExpression
     if input_boolean == "":
         raise InvalidBooleanExpression
 
