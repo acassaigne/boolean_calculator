@@ -49,8 +49,12 @@ class TestBooleanCalculatorShould(unittest.TestCase):
     def test_return_false_for_true_and_true_and_false(self):
         self.assertEqual(False, boolean_calculator("TRUE AND TRUE AND FALSE"))
 
-    def test_x(self):
+    def test_return_true_for_true_or_false(self):
         self.assertEqual(True, boolean_calculator("TRUE OR TRUE"))
+
+    def test_return_true_for_and_precedent_or(self):
+        self.assertEqual(True, boolean_calculator("FALSE AND TRUE OR TRUE"))
+
 
 def has_separator(string):
     return string.find(" ") != -1
@@ -62,6 +66,10 @@ def extract_first_word_from(string):
         first_word = string[:index_separator]
         return first_word, string[index_separator + 1:]
     return string, ""
+
+
+def _boolean_to_string(boolean):
+    return str(boolean).upper()
 
 
 def boolean_calculator(boolean_expression):
@@ -79,7 +87,9 @@ def boolean_calculator(boolean_expression):
         var1 = word
         operator, rest_expression = extract_first_word_from(rest_expression)
         if operator == "AND":
-            return boolean_calculator(var1) and boolean_calculator(rest_expression)
+            var2, rest_expression = extract_first_word_from(rest_expression)
+            result = boolean_calculator(var1) and boolean_calculator(var2)
+            return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
         if operator == "OR":
             return boolean_calculator(var1) or boolean_calculator(rest_expression)
         raise InvalidBooleanExpression
