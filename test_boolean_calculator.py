@@ -93,6 +93,9 @@ def boolean_calculator(boolean_expression):
         result = not boolean_calculator(second_word)
         return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
 
+    if second_word not in ["AND", "OR"]:
+        raise InvalidBooleanExpression
+
     third_word, rest_expression = extract_first_word_from(rest_expression)
     if second_word == "AND":
         result = boolean_calculator(first_word) and boolean_calculator(third_word)
@@ -100,8 +103,6 @@ def boolean_calculator(boolean_expression):
     if second_word == "OR":
         result = boolean_calculator(first_word) or boolean_calculator(third_word)
         return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
-    else:
-        raise InvalidBooleanExpression
 
 
 
