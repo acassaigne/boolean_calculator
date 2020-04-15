@@ -100,7 +100,9 @@ def boolean_calculator(boolean_expression):
         result = boolean_calculator(var1) and boolean_calculator(var2)
         return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
     if operator == "OR":
-        return boolean_calculator(var1) or boolean_calculator(rest_expression)
+        var2, rest_expression = extract_first_word_from(rest_expression)
+        result = boolean_calculator(var1) or boolean_calculator(var2)
+        return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
     raise InvalidBooleanExpression
 
 
