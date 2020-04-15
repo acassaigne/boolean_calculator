@@ -82,15 +82,17 @@ def atom_to_boolean(string_boolean):
         return True
     raise InvalidBooleanExpression
 
+
 def boolean_calculator(boolean_expression):
     word, rest_expression = extract_first_word_from(boolean_expression)
     if rest_expression == "":
         return atom_to_boolean(word)
 
-    if word == "NOT":
-        var1, rest_expression = extract_first_word_from(rest_expression)
-        result = not boolean_calculator(var1)
-        return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
+    if has_separator(boolean_expression):
+        if word == "NOT":
+            var1, rest_expression = extract_first_word_from(rest_expression)
+            result = not boolean_calculator(var1)
+            return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
     if has_separator(boolean_expression):
         var1 = word
         operator, rest_expression = extract_first_word_from(rest_expression)
