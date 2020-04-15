@@ -82,25 +82,25 @@ def atom_to_boolean(string_boolean):
         return True
     raise InvalidBooleanExpression
 
-
-def boolean_calculator(boolean_expression):
-    first_word, rest_expression = extract_first_word_from(boolean_expression)
-    if rest_expression == "":
-        return atom_to_boolean(first_word)
-
-    second_word, rest_expression = extract_first_word_from(rest_expression)
-    if first_word == "NOT":
-        result = not boolean_calculator(second_word)
-        return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
-
-    if second_word not in ["AND", "OR"]:
+def raise_error_if_invalid_operator(operator):
+    if operator not in ["AND", "OR"]:
         raise InvalidBooleanExpression
 
-    third_word, rest_expression = extract_first_word_from(rest_expression)
-    if second_word == "AND":
-        result = boolean_calculator(first_word) and boolean_calculator(third_word)
-    if second_word == "OR":
-        result = boolean_calculator(first_word) or boolean_calculator(third_word)
+def boolean_calculator(boolean_expression):
+    left_expression, rest_expression = extract_first_word_from(boolean_expression)
+    if rest_expression == "":
+        return atom_to_boolean(left_expression)
+
+    second_word, rest_expression = extract_first_word_from(rest_expression)
+    if left_expression == "NOT":
+        result = not boolean_calculator(second_word)
+    else:
+        raise_error_if_invalid_operator(second_word)
+        right_expression, rest_expression = extract_first_word_from(rest_expression)
+        if second_word == "AND":
+            result = boolean_calculator(left_expression) and boolean_calculator(right_expression)
+        if second_word == "OR":
+            result = boolean_calculator(left_expression) or boolean_calculator(right_expression)
 
     return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
 
