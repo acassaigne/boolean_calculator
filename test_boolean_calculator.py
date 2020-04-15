@@ -84,24 +84,23 @@ def atom_to_boolean(string_boolean):
 
 
 def boolean_calculator(boolean_expression):
-    word, rest_expression = extract_first_word_from(boolean_expression)
+    first_word, rest_expression = extract_first_word_from(boolean_expression)
     if rest_expression == "":
-        return atom_to_boolean(word)
+        return atom_to_boolean(first_word)
 
-    if has_separator(boolean_expression):
-        if word == "NOT":
-            var1, rest_expression = extract_first_word_from(rest_expression)
-            result = not boolean_calculator(var1)
-            return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
-    if has_separator(boolean_expression):
-        var1 = word
-        operator, rest_expression = extract_first_word_from(rest_expression)
-        if operator == "AND":
-            var2, rest_expression = extract_first_word_from(rest_expression)
-            result = boolean_calculator(var1) and boolean_calculator(var2)
-            return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
-        if operator == "OR":
-            return boolean_calculator(var1) or boolean_calculator(rest_expression)
-        raise InvalidBooleanExpression
+    if first_word == "NOT":
+        var1, rest_expression = extract_first_word_from(rest_expression)
+        result = not boolean_calculator(var1)
+        return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
+
+    var1 = first_word
+    operator, rest_expression = extract_first_word_from(rest_expression)
+    if operator == "AND":
+        var2, rest_expression = extract_first_word_from(rest_expression)
+        result = boolean_calculator(var1) and boolean_calculator(var2)
+        return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
+    if operator == "OR":
+        return boolean_calculator(var1) or boolean_calculator(rest_expression)
+    raise InvalidBooleanExpression
 
 
