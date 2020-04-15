@@ -55,7 +55,7 @@ class TestBooleanCalculatorShould(unittest.TestCase):
     def test_return_true_for_and_precedent_or(self):
         self.assertEqual(True, boolean_calculator("FALSE AND TRUE OR TRUE"))
 
-    def test_y(self):
+    def test_return_true_not_precedent_on_or(self):
         self.assertEqual(True, boolean_calculator("NOT FALSE OR TRUE"))
 
 
@@ -82,9 +82,11 @@ def string_to_boolean(string_boolean):
         return True
     raise InvalidBooleanExpression
 
+
 def raise_error_if_invalid_operator(operator):
     if operator not in ["AND", "OR"]:
         raise InvalidBooleanExpression
+
 
 def boolean_calculator(boolean_expression):
     left_expression, rest_expression = extract_first_word_from(boolean_expression)
