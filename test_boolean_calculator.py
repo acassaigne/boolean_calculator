@@ -71,11 +71,11 @@ def extract_first_word_from(string):
     return string, ""
 
 
-def _boolean_to_string(boolean):
+def boolean_to_string(boolean):
     return str(boolean).upper()
 
 
-def atom_to_boolean(string_boolean):
+def string_to_boolean(string_boolean):
     if string_boolean == "FALSE":
         return False
     if string_boolean == "TRUE":
@@ -89,7 +89,7 @@ def raise_error_if_invalid_operator(operator):
 def boolean_calculator(boolean_expression):
     left_expression, rest_expression = extract_first_word_from(boolean_expression)
     if rest_expression == "":
-        return atom_to_boolean(left_expression)
+        return string_to_boolean(left_expression)
 
     second_word, rest_expression = extract_first_word_from(rest_expression)
     if left_expression == "NOT":
@@ -102,6 +102,6 @@ def boolean_calculator(boolean_expression):
         if second_word == "OR":
             result = boolean_calculator(left_expression) or boolean_calculator(right_expression)
 
-    return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
+    return boolean_calculator(boolean_to_string(result) + " " + rest_expression)
 
 
