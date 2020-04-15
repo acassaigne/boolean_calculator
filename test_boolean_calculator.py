@@ -88,21 +88,20 @@ def boolean_calculator(boolean_expression):
     if rest_expression == "":
         return atom_to_boolean(first_word)
 
+    second_word, rest_expression = extract_first_word_from(rest_expression)
     if first_word == "NOT":
-        var1, rest_expression = extract_first_word_from(rest_expression)
-        result = not boolean_calculator(var1)
+        result = not boolean_calculator(second_word)
         return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
 
-    var1 = first_word
-    operator, rest_expression = extract_first_word_from(rest_expression)
-    if operator == "AND":
-        var2, rest_expression = extract_first_word_from(rest_expression)
-        result = boolean_calculator(var1) and boolean_calculator(var2)
+    third_word, rest_expression = extract_first_word_from(rest_expression)
+    if second_word == "AND":
+        result = boolean_calculator(first_word) and boolean_calculator(third_word)
         return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
-    if operator == "OR":
-        var2, rest_expression = extract_first_word_from(rest_expression)
-        result = boolean_calculator(var1) or boolean_calculator(var2)
+    if second_word == "OR":
+        result = boolean_calculator(first_word) or boolean_calculator(third_word)
         return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
-    raise InvalidBooleanExpression
+    else:
+        raise InvalidBooleanExpression
+
 
 
