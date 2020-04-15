@@ -99,10 +99,9 @@ def boolean_calculator(boolean_expression):
     third_word, rest_expression = extract_first_word_from(rest_expression)
     if second_word == "AND":
         result = boolean_calculator(first_word) and boolean_calculator(third_word)
-        return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
     if second_word == "OR":
         result = boolean_calculator(first_word) or boolean_calculator(third_word)
-        return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
 
+    return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
 
 
