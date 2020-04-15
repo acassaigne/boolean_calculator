@@ -55,6 +55,9 @@ class TestBooleanCalculatorShould(unittest.TestCase):
     def test_return_true_for_and_precedent_or(self):
         self.assertEqual(True, boolean_calculator("FALSE AND TRUE OR TRUE"))
 
+    def test_y(self):
+        self.assertEqual(True, boolean_calculator("NOT FALSE OR TRUE"))
+
 
 def has_separator(string):
     return string.find(" ") != -1
@@ -72,17 +75,22 @@ def _boolean_to_string(boolean):
     return str(boolean).upper()
 
 
+def atom_to_boolean(string_boolean):
+    if string_boolean == "FALSE":
+        return False
+    if string_boolean == "TRUE":
+        return True
+    raise InvalidBooleanExpression
+
 def boolean_calculator(boolean_expression):
     word, rest_expression = extract_first_word_from(boolean_expression)
     if rest_expression == "":
-        if word == "FALSE":
-            return False
-        if word == "TRUE":
-            return True
-        raise InvalidBooleanExpression
+        return atom_to_boolean(word)
 
     if word == "NOT":
-        return not boolean_calculator(rest_expression)
+        var1, rest_expression = extract_first_word_from(rest_expression)
+        result = not boolean_calculator(var1)
+        return boolean_calculator(_boolean_to_string(result) + " " + rest_expression)
     if has_separator(boolean_expression):
         var1 = word
         operator, rest_expression = extract_first_word_from(rest_expression)
